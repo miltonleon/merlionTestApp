@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing {@link merliontechs.domain.Sales}.
@@ -115,4 +116,27 @@ public class SalesResource {
         salesRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+    //---------------
+    @GetMapping("/salesdeliveredtoday")
+    public List<Map<String, Object>> getAllSalesInDeliveredToday() {
+        log.debug("REST request to get all Products shippeds");
+        return salesRepository.AllSalesByCurrentDayAndDelivered();
+    }
+    @GetMapping("/salestoday")
+    public List<Map<String, Object>> getAllProductsToday() {
+        log.debug("REST request to get all products sales in today");
+        return salesRepository.AllSalesByCurrentDay();
+    }
+    @GetMapping("/salesproductsincome")
+    public List<Map<String, Object>> getAllProductsWithMoreIncomeProduced() {
+        log.debug("REST request to get all Products more income produced");
+        return salesRepository.AllProductsMoreIncome();
+    }
+    @GetMapping("/salesproductsselled")
+    public List<Map<String, Object>> getAllProductsWithMoreSelled() {
+        log.debug("REST request to get all products with more selled");
+        return salesRepository.AllProductsMoreSelled();
+    }
+
+
 }
