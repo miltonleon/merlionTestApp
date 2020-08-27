@@ -4,7 +4,7 @@ import './app.scss';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'reactstrap';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router ,Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { hot } from 'react-hot-loader';
 
@@ -18,6 +18,8 @@ import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
+// import Entregado from 'app/entities/sales/Entregado';
+// import Cabezera from 'app/modules/home/cabezera';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
@@ -32,7 +34,7 @@ export const App = (props: IAppProps) => {
   const paddingTop = '60px';
   return (
     <Router basename={baseHref}>
-      <div className="app-container" style={{ paddingTop }}>
+      <div className="app-container" style={{ paddingTop }} >
         <ToastContainer position={toast.POSITION.TOP_LEFT} className="toastify-container" toastClassName="toastify-toast" />
         <ErrorBoundary>
           <Header
@@ -54,6 +56,10 @@ export const App = (props: IAppProps) => {
           <Footer />
         </div>
       </div>
+
+       {/* <Route exact path="/"component={Cabezera}/>
+      <Route exact path="/enviado" component={Entregado}/>  */}
+     
     </Router>
   );
 };
